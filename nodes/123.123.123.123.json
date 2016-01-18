@@ -1,0 +1,26 @@
+{
+  "run_list": [
+    "recipe[sinatra]",
+    "recipe[sinatra::user]",
+    "recipe[sinatra::ssh]",
+    "recipe[sinatra::rbenv]",
+    "recipe[sinatra::nginx]",
+    "recipe[sinatra::app]"
+  ],
+
+  "group": "deploy",
+  "port": 22,
+
+  "user": {
+    "name": "robot",
+    "password": "$1$M.053oCf$5VDAMuRTVhh8s60QUymT/."
+  },
+
+  "db": {
+    "root_password": "secret",
+    "user": {
+      "name": "bob",
+      "password": "secret"
+    }
+  }
+}
