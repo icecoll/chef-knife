@@ -1,10 +1,16 @@
 package "nginx"
 
 # remove default nginx config
-default_path = "/etc/nginx/sites-enabled/default"
-execute "rm -f #{default_path}" do
-  only_if { File.exists?(default_path) }
-end
+#default_path = "/etc/nginx/sites-enabled/"
+#default_file = "/etc/nginx/sites-enabled/default"
+#
+#execute "mkdir #{default_path}" do
+#  only_if { !Dir.exists?(default_path) }
+#end
+#
+#execute "rm -f #{default_file}" do
+#  only_if { File.exists?(default_path) }
+#end
 
 # start nginx
 service "nginx" do
@@ -13,7 +19,7 @@ service "nginx" do
 end
 
 # set custom nginx config
-template "/etc/nginx/sites-enabled/#{node['app']}" do
+template "/etc/nginx/conf.d/#{node['app']}" do
   source "default/nginx.conf.erb"
   mode 0644
   owner node['user']['name']
