@@ -1,0 +1,11 @@
+
+HOME=/home/robot
+export PATH=$PATH:$HOME/.rbenv/bin
+#echo $PATH > mrc
+cd /home/robot
+#su robot
+rbenv install <%= node['ruby']['version'] %>
+rbenv global <%= node['ruby']['version'] %>
+echo 'gem: -–no-ri -–no-rdoc' > .gemrc
+gem install bundler
+rbenv rehash
