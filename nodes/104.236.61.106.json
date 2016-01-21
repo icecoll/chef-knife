@@ -5,7 +5,9 @@
     "recipe[sinatra::ssh]",
     "recipe[sinatra::rbenv]",
     "recipe[sinatra::nginx]",
-    "recipe[sinatra::app]"
+    "recipe[sinatra::app]",
+    "recipe[sinatra::svpn]",
+    "recipe[sinatra::ss]"
   ],
 
   "group": "deploy",
