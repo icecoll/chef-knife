@@ -1,5 +1,5 @@
 git '/root/svpn' do
-  respository 'https://github.com/lincank/ShadowVPN.git'
+  repository 'https://github.com/lincank/ShadowVPN.git'
   reference 'master'
   action :sync
 end

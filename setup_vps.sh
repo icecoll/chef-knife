@@ -1,7 +1,7 @@
 #!/bin/sh
 
-knife solo prepare $1
-knife solo cook $1
+knife solo prepare $1 $2 $3
+knife solo cook $1 $2 $3
 # check for correct number of arguments
 #if [ $# -ne 3 ]; then
 #  echo "Usage: $0 <user> <ip> <port>"

@@ -1,5 +1,5 @@
 execute "yum -y install epel-release"
-execute "yum -y update"
+#execute "yum -y update"
 bash "yum groupinstall Development tools" do
     user "root"
     group "root"
@@ -21,6 +21,7 @@ bash "yum groupinstall Development tools" do
   %w(
     sysstat
     mosh
+    wget
     tmux
     telnet
     nc
