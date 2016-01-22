@@ -1,5 +1,5 @@
 execute "yum -y install epel-release"
-execute "yum -y update"
+# execute "yum -y update"
 bash "yum groupinstall Development tools" do
     user "root"
     group "root"
@@ -14,37 +14,26 @@ bash "yum groupinstall Development tools" do
     group "root"
     code <<-EOC
       yum groupinstall "Development Libraries" -y
+      yum install -y sysstat mosh  telnet nc patch make git openssl-devel readline-devel zlib-devel mailx man dstat iotop iptraf hdparm  socat
     EOC
-    not_if "yum grouplist installed | grep 'Development Libraries'"
+    # not_if "yum grouplist installed | grep 'Development Libraries'"
   end
 
-  %w(
-    sysstat
-    mosh
-    tmux
-    telnet
-    nc
-    patch
-    make
-    git
-    openssl-devel
-    readline-devel
-    zlib-devel
-    mailx
-    man
-    dstat
-    iotop
-    iptraf
-    hdparm
-    postfix
-    postfix-perl-scripts
-    socat
-  ).each do |pkg|
-    package pkg do
-      #options "--enablerepo=epel"
-      action :install
-    end
+
+  bash "create swap file" do
+    user "root"
+    code <<-EOC
+      mkdir -p /var/cache/swap/
+      dd if=/dev/zero of=/var/cache/swap/swap0 bs=1M count=512
+      chmod 0600 /var/cache/swap/swap0
+      mkswap /var/cache/swap/swap0 
+      swapon /var/cache/swap/swap0
+    EOC
+    not_if File.exists? "/var/cache/swap/swap0"
   end
+
+
+
 
 
 # install packages

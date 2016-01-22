@@ -1,5 +1,5 @@
 git '/root/ss' do
-  respository 'https://github.com/shadowsocks/shadowsocks-libev.git'
+  repository 'https://github.com/shadowsocks/shadowsocks-libev.git'
   reference 'master'
   action :sync
 end
