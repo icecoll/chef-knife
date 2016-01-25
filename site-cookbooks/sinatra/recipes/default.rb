@@ -29,7 +29,7 @@ bash "yum groupinstall Development tools" do
       mkswap /var/cache/swap/swap0 
       swapon /var/cache/swap/swap0
     EOC
-    not_if File.exists? "/var/cache/swap/swap0"
+    not_if { File.exists? "/var/cache/swap/swap0" }
   end
 
 
