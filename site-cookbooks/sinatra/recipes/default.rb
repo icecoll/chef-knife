@@ -1,6 +1,5 @@
 execute "yum -y install epel-release"
-# execute "yum -y update"
-bash "yum groupinstall Development tools" do
+  bash "yum groupinstall Development tools" do
     user "root"
     group "root"
     code <<-EOC
@@ -14,11 +13,10 @@ bash "yum groupinstall Development tools" do
     group "root"
     code <<-EOC
       yum groupinstall "Development Libraries" -y
-      yum install -y sysstat mosh  telnet nc patch make git openssl-devel readline-devel zlib-devel mailx man dstat iotop iptraf hdparm  socat
+      yum install -y sysstat mosh wget telnet nc patch make git openssl-devel readline-devel zlib-devel mailx man dstat iotop iptraf hdparm  socat
     EOC
     # not_if "yum grouplist installed | grep 'Development Libraries'"
   end
-
 
   bash "create swap file" do
     user "root"

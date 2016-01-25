@@ -3,11 +3,7 @@
     "recipe[sinatra]",
     "recipe[sinatra::user]",
     "recipe[sinatra::ssh]",
-    "recipe[sinatra::rbenv]",
-    "recipe[sinatra::nginx]",
-    "recipe[sinatra::app]",
-    "recipe[sinatra::svpn]",
-    "recipe[sinatra::ss]"
+    "recipe[sinatra::rbenv]"
   ],
 
   "group": "deploy",
@@ -21,7 +17,7 @@
   "db": {
     "root_password": "secret",
     "user": {
-      "name": "bob",
+      "name": "lol",
       "password": "secret"
     }
   }
