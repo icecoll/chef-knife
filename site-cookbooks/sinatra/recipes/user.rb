@@ -16,6 +16,10 @@ bash 'give group sudo privileges' do
   not_if "grep -xq '%#{node['group']} ALL=(ALL) ALL' /etc/sudoers"
 end
 
+directory "/home/#{node['user']['name']}/.ssh" do
+  owner node['user']['name']
+end
+
 # add ssh keys, as deployment key on bitbucket
 template "/home/#{node['user']['name']}/.ssh/id_rsa.pub" do
   source "id_rsa.pub"
