@@ -20,7 +20,9 @@ execute "yum -y install epel-release"
 
   bash "create swap file" do
     user "root"
+    # setenforce 0: nginx will  Permission denied error with unicorn socks unless set this to 0
     code <<-EOC
+      setenforce 0
       mkdir -p /var/cache/swap/
       dd if=/dev/zero of=/var/cache/swap/swap0 bs=1M count=512
       chmod 0600 /var/cache/swap/swap0
