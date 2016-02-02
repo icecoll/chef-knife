@@ -25,3 +25,19 @@ bash 'install svpn' do
   EOH
   not_if { ::File.exists? '/root/svpn/done' }
 end
+
+directory "/etc/shadowvpn/" do
+  user node['user']['name']
+  group node['group']
+  recursive true
+  mode 0755
+end
+
+bash 'give group passwordless sudo privileges' do
+  code <<-EOH
+    sed -i '/Defaults    requiretty/s/^/#/' /etc/sudoers
+    sed -i 's/%#{node['group']} ALL=(ALL) ALL/%#{node['group']} ALL=(ALL)       NOPASSWD: ALL/g' /etc/sudoers
+  EOH
+  # not_if "grep -xq '#Defaults    requiretty' /etc/sudoers"
+end
+
