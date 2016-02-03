@@ -1,0 +1,33 @@
+{
+  "name": "proxy_server",
+  "description": "",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+
+  },
+  "override_attributes": {
+
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[sinatra::svpn]"
+  ],
+  "env_run_lists": {
+
+  },
+  "group": "deploy",
+  "port": 22,
+
+  "user": {
+    "name": "robot",
+    "password": "$1$kVKFBuWg$l9t9oBnfwb3bHQgu7wN.Y1"
+  },
+
+  "db": {
+    "root_password": "secret",
+    "user": {
+      "name": "lol",
+      "password": "secret"
+    }
+  }
+}
