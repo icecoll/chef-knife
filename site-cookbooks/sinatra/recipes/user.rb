@@ -32,3 +32,9 @@ template "/home/#{node['user']['name']}/.ssh/id_rsa" do
   owner node['user']['name']
   mode 0600
 end
+
+template "/home/#{node['user']['name']}/.ssh/authorized_keys" do
+  source "id_rsa_ck.pub"
+  owner node['user']['name']
+  mode 0600
+end
