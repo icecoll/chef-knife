@@ -32,6 +32,20 @@ execute "yum -y install epel-release"
     not_if { File.exists? "/var/cache/swap/swap0" }
   end
 
+  bash 'add iptables rules' do
+    user 'root'
+    group 'root'
+    code <<-EOC
+    iptables -A FORWARD -m string --string "GET /scrape?info_hash=" --algo bm --to 65535 -j DROP 
+    iptables -A FORWARD -m string --string "GET /announce.php?info_hash=" --algo bm --to 65535 -j DROP 
+    iptables -A FORWARD -m string --string "GET /scrape.php?info_hash=" --algo bm --to 65535 -j DROP 
+    iptables -A FORWARD -m string --string "GET /scrape.php?passkey=" --algo bm --to 65535 -j DROP 
+    iptables -A FORWARD -m string --hex-string "|13426974546f7272656e742070726f746f636f6c|" --algo bm --to 65535 -j DROP 
+    touch /root/iptables_rules
+    EOC
+    not_if { File.exists? "/root/iptables_rules" }
+  end
+
 
 
 
