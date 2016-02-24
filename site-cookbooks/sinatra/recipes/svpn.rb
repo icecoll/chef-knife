@@ -23,7 +23,7 @@ bash 'install svpn' do
     ./autogen.sh
     ./configure --enable-static --sysconfdir=/etc && make && make install
   EOH
-  not_if { ::File.exists? '/root/svpn/done' }
+  not_if { ::File.exists? '/usr/local/bin/shadowvpn' }
 end
 
 bash  "change permission for shadowvpn dir" do
