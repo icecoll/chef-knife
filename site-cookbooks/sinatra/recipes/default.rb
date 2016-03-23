@@ -13,7 +13,7 @@ execute "yum -y install epel-release"
     group "root"
     code <<-EOC
       yum groupinstall "Development Libraries" -y
-      yum install -y sysstat mosh wget telnet nc patch make git openssl-devel readline-devel zlib-devel mailx man dstat iotop iptraf hdparm socat iptables-services fail2ban sudo net-tools
+      yum install -y net-tools sysstat mosh wget telnet nc patch make git openssl-devel readline-devel zlib-devel mailx man dstat iotop iptraf hdparm socat iptables-services fail2ban sudo
     EOC
     # not_if "yum grouplist installed | grep 'Development Libraries'"
   end
