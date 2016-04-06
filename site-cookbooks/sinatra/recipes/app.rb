@@ -19,6 +19,7 @@ bash 'start the socket_server & nohup ' do
    group node['group']
    code <<-EOH
      bundle install
+     sleep 30
      touch done
      nohup ruby server.rb &
      EOH
