@@ -1,4 +1,5 @@
 GEM
+  remote: https://gems.ruby-china.org/
   specs:
     builder (3.2.2)
     chef (12.6.0)
@@ -126,6 +127,3 @@ PLATFORMS
 
 DEPENDENCIES
   knife-solo
-
-BUNDLED WITH
-   1.10.6

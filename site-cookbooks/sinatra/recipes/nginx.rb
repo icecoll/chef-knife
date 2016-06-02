@@ -34,6 +34,19 @@ template "/etc/nginx/conf.d/#{node['app']}.conf" do
   notifies :restart, "service[nginx]", :delayed
 end
 
+template "/etc/logrotate.d/sinatra_logrotate.conf" do
+  source "sinatra_logrotate.conf"
+  # owner node['user']['name']
+  # mode 0600
+end
+
+cookbook_file default_file do
+  source "nginx.conf"
+  mode 0644
+  owner 'root'
+  group 'root'
+end
+
 # stop apache 
 service "httpd" do
   action [:disable, :stop ]
