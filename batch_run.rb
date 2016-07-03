@@ -16,7 +16,7 @@ servers = production_servers
 
 servers.each do |server|
   log_file = "/tmp/chef-#{server}.log"
-  pid = spawn("knife solo cook root@#{server} nodes/104.131.151.145.json  --override-runlist 'recipe[sinatra::security]'", out: log_file, err: log_file)
+  pid = spawn("knife solo cook root@#{server} nodes/104.131.151.145.json  --override-runlist 'recipe[sinatra::single_task]'", out: log_file, err: log_file)
   Process.detach(pid)
 end
 
