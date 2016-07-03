@@ -5,26 +5,26 @@ directory "/var/www" do
   mode 0755
 end
 
-git '/home/robot/socket_server' do
-  repository 'git@bitbucket.org:everants/freeway_socket.git'
-  reference 'master'
-  action :sync
-  user node['user']['name']
-  group node['group']
-end
+# git '/home/robot/socket_server' do
+#   repository 'git@bitbucket.org:everants/freeway_socket.git'
+#   reference 'master'
+#   action :sync
+#   user node['user']['name']
+#   group node['group']
+# end
 
-bash 'start the socket_server & nohup ' do
-   cwd '/home/robot/socket_server'
-   user node['user']['name']
-   group node['group']
-   code <<-EOH
-     bundle install
-     sleep 30
-     touch done
-     nohup ruby server.rb &
-     EOH
-  not_if { ::File.exists? '/home/robot/socket_server/done' }
-end
+# bash 'start the socket_server & nohup ' do
+#    cwd '/home/robot/socket_server'
+#    user node['user']['name']
+#    group node['group']
+#    code <<-EOH
+#      bundle install
+#      sleep 30
+#      touch done
+#      nohup ruby server.rb &
+#      EOH
+#   not_if { ::File.exists? '/home/robot/socket_server/done' }
+# end
 #
 ## create shared directory structure for app
 #path = "/var/www/#{node['app']}/shared/config"
