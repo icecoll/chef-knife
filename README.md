@@ -1,3 +1,8 @@
+### 使用
+
+	bundle exec knife solo boostrap root@45.32.52.17  nodes/104.131.151.145.json  
+	bundle exec knife solo cook root@45.32.52.17  nodes/104.131.151.145.json  
+
 ### 批处理多台服务器
 多台服务器时，修改`batch_run.rb`里涉及的服务器， 然后
 

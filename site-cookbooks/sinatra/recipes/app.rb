@@ -5,6 +5,15 @@ directory "/var/www" do
   mode 0755
 end
 
+bash 'add sinatra log file' do
+  cwd '/var/log'
+  code <<-EOH
+    touch /var/log/unicorn.stderr.log 
+    touch /var/log/unicorn.stdout.log 
+    chown robot:deploy /var/log/unicorn.*
+  EOH
+  not_if { ::File.exists?('/var/log/unicorn.stderr.log') && ::File.exists?('/var/log/unicorn.stdout.log')}
+end
 # git '/home/robot/socket_server' do
 #   repository 'git@bitbucket.org:everants/freeway_socket.git'
 #   reference 'master'
