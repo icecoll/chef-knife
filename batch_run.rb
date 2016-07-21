@@ -9,11 +9,13 @@ production_servers = [
   "106.187.92.31", "106.187.100.102", "160.16.239.195", 
   "104.131.151.145", "107.170.249.223", "45.55.29.175", 
   "159.203.195.6", "107.170.194.61", "162.243.158.181",
-  "45.120.158.121", "45.120.158.67", "45.124.67.113"]
+  "45.120.158.67","45.120.158.121", "45.124.67.113", # hk
+  "104.238.149.234","45.32.52.17"] # vultr jp
 
 servers = production_servers
 
 
+puts "Running chef on #{servers.size} servers"
 servers.each do |server|
   log_file = "/tmp/chef-#{server}.log"
   pid = spawn("knife solo cook root@#{server} nodes/104.131.151.145.json  --override-runlist 'recipe[sinatra::single_task]'", out: log_file, err: log_file)

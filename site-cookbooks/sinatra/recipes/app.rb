@@ -14,6 +14,20 @@ bash 'add sinatra log file' do
   EOH
   not_if { ::File.exists?('/var/log/unicorn.stderr.log') && ::File.exists?('/var/log/unicorn.stdout.log')}
 end
+
+
+template "/etc/logrotate.d/sinatra_logrotate.conf" do
+  source "sinatra_logrotate.conf"
+  # owner node['user']['name']
+  # mode 0600
+end
+
+bash 'enable hourly logrotate' do
+  code <<-EOH
+    cp /etc/cron.daily/logrotate /etc/cron.hourly/ 
+  EOH
+  not_if { ::File.exists?('/etc/cron.hourly/logrotate') }
+end
 # git '/home/robot/socket_server' do
 #   repository 'git@bitbucket.org:everants/freeway_socket.git'
 #   reference 'master'
